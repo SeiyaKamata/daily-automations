@@ -1,7 +1,7 @@
 # news-digest
 
-RSSで収集したニュース記事をGemini APIで自動要約し、NotionのNewsデータベースに保存する。
-その後Claude Codeが精読/流し読みに分類して日報ページにダイジェストを追記する。
+RSSで収集したニュース記事をGemini APIで自動要約し、Obsidian Syncのvaultに保存する。
+その後Claude Codeが精読/流し読みに分類して日報ページにニュースダイジェストを追記する。
 
 ## フロー
 
@@ -9,10 +9,10 @@ RSSで収集したニュース記事をGemini APIで自動要約し、NotionのN
 GitHub Actions (cron: JST 6:00)
   → feeds.yaml からRSSを取得
   → Gemini APIで各記事を要約（失敗した場合はdescriptionをそのまま保存）
-  → Notionのnewsデータベースに一記事一ページで保存
+  → Obsidian Syncのvaultにnews/YYYY-MM-DD.mdとして1日1ファイルで保存
 
 Claude Code
-  → newsデータベースから今日の記事を取得
+  → news/YYYY-MM-DD.md から今日の記事を取得
   → 精読/流し読みに分類
   → 日報ページにニュースダイジェストを追記
 ```
@@ -21,11 +21,11 @@ Claude Code
 
 ```
 news-digest/
-├── feeds.yaml          # 購読するRSSフィードリスト
+├── feeds.yaml              # 購読するRSSフィードリスト
 └── scripts/
-    ├── fetch_rss.py    # RSSフェッチ・記事をarticles/YYYY-MM-DD/に保存
-    ├── summarize.py    # Gemini APIで記事を要約しai_summaryをフロントマターに追記
-    └── save_to_notion.py  # 記事をNotionのNewsデータベースに保存
+    ├── fetch_rss.py        # RSSフェッチ・記事をarticles/YYYY-MM-DD/に保存
+    ├── summarize.py        # Gemini APIで記事を要約しai_summaryをフロントマターに追記
+    └── save_to_obsidian.py # 記事をObsidian vaultのnews/YYYY-MM-DD.mdに保存
 ```
 
 ## 必要なSecrets
@@ -33,8 +33,10 @@ news-digest/
 | Secret名 | 内容 |
 |---|---|
 | `GEMINI_API_KEY` | [Google AI Studio](https://aistudio.google.com/) でAPIキーを発行して設定 |
-| `NOTION_TOKEN` | Notion Integration Token |
-| `NOTION_NEWS_DATABASE_ID` | NotionのNewsデータベースID |
+| `OBSIDIAN_EMAIL` | Obsidianアカウントのメールアドレス |
+| `OBSIDIAN_PASSWORD` | Obsidianアカウントのパスワード |
+| `OBSIDIAN_VAULT_NAME` | リモートvault名（`ob sync-list-remote` で確認） |
+| `OBSIDIAN_VAULT_PASSWORD` | vaultのE2E暗号化パスワード（アカウントパスワードとは別） |
 
 ## RSSフィードのカスタマイズ
 
