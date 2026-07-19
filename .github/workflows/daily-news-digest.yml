@@ -56,6 +56,9 @@ jobs:
             --path /tmp/obsidian-vault \
             --password "$OBSIDIAN_VAULT_PASSWORD" \
             --device-name github-actions
+          ob sync-config \
+            --path /tmp/obsidian-vault \
+            --excluded-folders "notes,logs,inbox,_templates,_base,_excalidraw"
           python tasks/news-digest/scripts/save_to_obsidian.py
           ob sync --path /tmp/obsidian-vault
           rm -rf /tmp/obsidian-vault
