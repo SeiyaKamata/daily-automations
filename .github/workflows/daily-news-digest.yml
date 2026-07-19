@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch:
+  build-digest:
     runs-on: ubuntu-latest
 
     permissions:
