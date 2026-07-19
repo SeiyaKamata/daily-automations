@@ -1,7 +1,6 @@
 # news-digest
 
 RSSで収集したニュース記事をGemini APIで自動要約し、Obsidian Syncのvaultに保存する。
-その後Claude Codeが精読/流し読みに分類して日報ページにニュースダイジェストを追記する。
 
 ## フロー
 
@@ -10,11 +9,6 @@ GitHub Actions (cron: JST 6:00)
   → feeds.yaml からRSSを取得
   → Gemini APIで各記事を要約（失敗した場合はdescriptionをそのまま保存）
   → Obsidian Syncのvaultにnews/YYYY-MM-DD.mdとして1日1ファイルで保存
-
-Claude Code
-  → news/YYYY-MM-DD.md から今日の記事を取得
-  → 精読/流し読みに分類
-  → 日報ページにニュースダイジェストを追記
 ```
 
 ## ファイル構成
