@@ -1,4 +1,4 @@
-name: Fetch RSS Feeds
+name: Daily News Digest
 
 on:
   schedule:
