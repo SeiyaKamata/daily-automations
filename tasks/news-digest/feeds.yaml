@@ -1,8 +1,7 @@
 feeds:
   # 政治・経済
-  - https://assets.wor.jp/rss/rdf/bloomberg/top.rdf
-  - https://assets.wor.jp/rss/rdf/reuters/top.rdf
-  - https://assets.wor.jp/rss/rdf/bloomberg/markets.rdf
+  - https://news.google.com/rss/headlines/section/topic/NATION?hl=ja&gl=JP&ceid=JP:ja
+  - https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=ja&gl=JP&ceid=JP:ja
 
   # セキュリティ
   - http://www.jpcert.or.jp/rss/jpcert.rdf
