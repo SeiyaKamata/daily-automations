@@ -5,7 +5,7 @@ RSSで収集したニュース記事をGemini APIで自動要約し、Obsidian S
 ## フロー
 
 ```
-GitHub Actions (cron: JST 6:00)
+GitHub Actions: Daily News Digest (cron: JST 6:00)
   → feeds.yaml からRSSを取得
   → Gemini APIで各記事を要約（失敗した場合はdescriptionをそのまま保存）
   → Obsidian Syncのvaultにnews/YYYY-MM-DD.mdとして1日1ファイルで保存
